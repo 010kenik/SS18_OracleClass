@@ -250,6 +250,7 @@
 
 
      C:\Windows\System32>sqlplus sys/ss123$ as sysdba
+     C:\Windows\System32>sqlplus sys/ss123$@localhost:1521/XE AS SYSDBA
      SQL*Plus: Release 11.2.0.2.0 Production on ?3?10 15:50:27 2023
 
     Copyright (c) 1982, 2014, Oracle.  All rights reserved.

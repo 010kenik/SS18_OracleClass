@@ -1,47 +1,87 @@
-1. SQL 이란 ? 
-1-2. SQL의 5가지 종류 
-   ㄱ. 
-   ㄴ. 
-   ㄷ. 
-   ㄹ. 
-   ㅁ. 
+10:02 수업시작~
 
-2. PL/SQL 이란 ? 
+1. SQL 이란 ? 
+   - 구조화된 질의 언어
+   - 오라클 서버           질의/응답                 클라이언트
+                         데이터 처리
+                           언어
+
+1-2. SQL의 5가지 종류 
+   ㄱ. DQL 조회(검색)  SELECT
+   ㄴ. DDL 정의        CREATE( 생성 ), DROP, ALTER
+   ㄷ. DML 조작        INSERT, UPDATE, DELETE, TRUNCATE, RENAME             ->   COMMIT, ROLLBACK
+   ㄹ. DCL 권한        [GRANT], REVOKE
+   ㅁ. TCL 트랜잭션     COMMIT, ROLLBACK, SAVEPOINT 
+
+2. PL/SQL 이란 ? 절차적 프로그래밍 언어문법이 확장된 SQL
+                   PL + SQL
+                   PL/SQL ( 오라클 )
    
 3. RDBMS 란 ? 
+    DATA
+    DATABASE
+    DBMS
+    R + DBMS             행/열   2차원적 표 데이터 처리.
+    (관계형) 
     
 4. SQL을 작성하세요.
    ㄱ. 모든 사용자 정보를 조회하는 SQL을 작성하세요.
     
-5. DBA 란 ?  
+5. DBA 란 ? 데이터베이스 관리자.
+            SYS >  SYSTEM
 
-6. SID 란 ?
-6-2. 전역 데이터베이스 이름 이란? 
+[ 용어 구분]
+오라클 서버
+오라클 데이터베이스 : 전역 데이터베이스 이름
+오라클 인스턴스     : SID
+
+6. SID 란 ? 시스템 식별자,                 XE
+6-2. 전역 데이터베이스 이름 이란?           XE
+    도메인명을 제거하고 나면 SID와 동일하다. 
 
 7. "데이터 모델"이란 ?  
 
 8. 관계형 데이터 모델의 핵심 구성 요소 
-  ㄱ. 
-  ㄴ. 
-  ㄷ. 
+  ㄱ. Entity
+  ㄴ. Attribute
+  ㄷ. Relational
   
-9. 테이블 ( table )? 
+9. 테이블 ( table )?  데이터 저장소
   
-9-2. 테이블스페이스 ? 
+9-2. 테이블 스페이스 ?   DBF
 
 10. 단축키를 적으세요.
-  ㄱ. SQL 작성 후 실행    :
-  ㄴ. 주석 처리                : 
+  ㄱ. SQL 작성 후 실행하는 방법    :
+      (1)  F5
+      (2)  Ctrl + Enter
+      (3) 
+  ㄴ. 주석 처리하는 방법           :  --  , REM
 
 11. 오라클 삭제하는 순서를 적으세요. 
-   ㄱ.
-   ㄴ.
-   ㄷ.
-   ㄹ.
+   ㄱ. 오라클 서비스 중지.
+   ㄴ. 프로그램 추가/제거 - Oracle 검색 - 제거
+       uninstalled.exe
+   ㄷ. 폴더 삭제
+   ㄹ. 레지스트리 삭제
 
-12. Sqlplus.exe 를  사용해서 sys 계정으로 로그인하는 코딩을 하세요.. 
+12. Sqlplus.exe 를  사용해서
+   ㄱ. sys 계정으로 로그인하고
+       
+   ㄴ. 로그인한 계정을 확인하고
+   
+   ㄷ. 모든 사용자 계정 조회하고
+   ㄹ. 연결종료하는 코딩을 하세요.
 
 13. tnsname.ora 파일의 용도를 설명하세요. 
+    클라이언트 ---->   [오라클 서버  +  오라클 DB]
+                            연결 설정 정보 
+
+14.  오라클 설치 후 주요 오라클 서비스 2가지       ***  
+  ㄱ.  Oracle[SID]Service
+  ㄴ.  Oracle[SID]Listener
+  수업 시작 전에 반드시 확인....
+
+15. SQL은 기본 [ (1) 테이블(table) ] , [ (2)뷰(view) ]을 대상으로 수행된다.    
 
 
 
