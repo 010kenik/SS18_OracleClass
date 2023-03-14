@@ -1,32 +1,105 @@
 1. 용어정리
   1) 롤(Role)
- 2) 스키마(Schema)
+ 1) 롤(Role)
+    ㄱ. 서로 관련된 권한을 한데 묶은 그룹
+    ㄴ. 다수 사용자와 다양한 권한을 효과적으로 관리하기 ( 목적 )
+    ㄷ. 롤 사용하는 순서
+       (1) 롤 생성
+       형식】
+            CREATE ROLE 롤이름
+            [NOT IDENTFIED 또는 IDENTIFIED
+              {BY PASSWORD 또는 EXTERNALLY 또는 GLOBALLY 또는 USING 패키지}];
+       
+       CREATE ROLE student_role;
+              
+       (2) 롤에 권한 부여 
+       
+       GRANT CREATE SESSION TO student_role
+       
+       (3) 사용자에게 롤 부여
+       
+       GRANT student_role TO kim;
 
+10:03 수업 시작~~~        
+ 2) 스키마(Schema)
+    - DB에서 어떤 목적을 위하여 필요한 여러 개로 구성된 테이블들의 집합을 Schema라 한다.
+    - USER A가 생성되면 자동적으로 동일한 이름의 SCHEMA A가 생성된다.
+    - SCHEMA는 "특정 USER와 관련된 OBJECT의 모음"이다
+    
+  ( 용어 기억 )
+  - Instance 란  데이터베이스 startup에서 ==> shutdown까지
+  - Session 란 사용자가 login에서 ==> logout까지 
+  - Schema 란 사용자가 만든 그 사용자의 모든 객체들 
+  
 2. 모든 사용자 정보 조회하는 SQL를 작성하세요.
    ( 계정 상태 포함 )
+   (1) SYS 접속
+   (2) SELECT *
+       FROM dba_users;
+   
+   dba_XXX
+   all_XXX
+   user_XXX
+   
+   
+   dba_users
+   all_users
+   user_users
+
 
 3. hong / 1234 계정 생성 
- ( 조건 :  계정 처음부터 잠김,  계정 사용 가능한 날짜 10일  )
+ ( 조건 :  계정 처음부터 잠김,  -- 계정 사용 가능한 날짜 10일  )
+ 
+  DDL  CREATE/ALTER/DROP
+  
+  CREATE USER 계정명
+  IDENTIFIED BY 비밀번호
+  ACCOUNT LOCK;
+  
 3-2. hong 계정 로그인 가능하도록 권한 부여
-3-3. hong의 시스템 권한 조회
-
-[1]
-select * 
-from dba_role_privs
-where grantee = 'HONG'; 
-[2]
-select * 
-from user_role_privs; 
+    CREATE SESSION 권한
+    DCL  권한 GRANT ,   REVOKE
+    GRANT 권한,롤  TO 계정, 롤
+    
+3-3. hong의 시스템 권한 조회 X
+    --
+    SELECT * 
+    FROM user_sys_privs; -- 시스템 권한
+    --
+    SELECT * 
+    FROM user_role_privs; -- 롤 
 
 3-4. hong의 권한 회수
+    DCL
+    REVOKE 권한,롤  FROM 롤,계정
+    
 3-5. hong의 비밀번호(abcd) 변경 및  계정 잠김 해제.
+   ALTER USER 계정
+   IDENTIFIED BY abcd
+   ACCOUNT UNLOCK;
+   
 3-6. hong 계정 삭제.
+   DROP USER 계정 [CASCADE];
 
 4. Ora_Help를 실행해서 오라클이 제공하는 기본적인 롤(Role) 종류를 적으세요. 
 
 5. SELECT문의 7가지 절을 적으시고, 처리 순서를 적으세요. 
-
+   DQL(Query) 조회 SELECT문
+   1) 정의 ?   하나 이상의 테이블 또는 뷰에서 데이터를 얻어오는 문.
+   2) 형식 ?
+   3) 절 + 순서
+      WITH     1
+        SELECT   6
+      FROM     2
+      WHERE    3
+      GROUP BY 4
+      HAVING   5
+        ORDER BY 7
+        
 6.  employees 테이블에서  아래와 같이 출력되도록 쿼리 작성하세요. 
+   1) hr 계정으로 접속
+   2) SELECT first_name, last_name
+      FROM employees;
    
 FIRST_NAME          LAST_NAME                   NAME                                           
 -------------------- ------------------------- ---------------------------------------------- 
@@ -44,8 +117,18 @@ Julia                Nayer                     Julia Nayer
 
 
 8. emp 테이블에서 잡,  사원번호, 이름, 입사일자를 조회하는 쿼리를 작성하세요.
+   1) scott 계정으로 접속.
+   SELECT empno , ename , job, hiredate
+   FROM emp;
+
+   
 8-2. emp 테이블에서  아래와 같은 조회 결과가 나오도록 쿼리를 작성하세요.
     (  sal + comm = pay  )
+    SELECT empno, ename, sal
+       ,  NVL(  comm,  0) comm
+       ,  NVL(  sal + comm, sal  )  pay
+       ,  sal + NVL(  comm,  0) pay
+    FROM emp;
     
      EMPNO ENAME             SAL       COMM        PAY
 ---------- ---------- ---------- ---------- ----------
